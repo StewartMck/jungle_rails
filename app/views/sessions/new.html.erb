@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		  </div>
 			<div class="modal-body">
-      <%= form_for '/login' do |f| %>
+      <%= form_for :sessions do |f| %>
       <div class="form-group">
       <%= f.text_field :email, class: "form-control", placeholder: "Email Address", required:"required"  %>
       </div>
@@ -19,13 +19,3 @@
 		</div>
   </div>
  </div>
-
- <h1>Login</h1>
-
-<%= form_tag '/login' do %>
-
-  Email: <%= text_field_tag :email %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Submit" %>
-
-<% end %>
