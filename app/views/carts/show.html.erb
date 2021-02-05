@@ -12,20 +12,23 @@
           <th>Unit Price</th>
           <th>Quantity</th>
           <th>Price</th>
+          <% if active_sale? %>
+          <th>Discount</th>
+          <%end%>
         </tr>
       </thead>
       <tbody>
         <% enhanced_cart.each do |item| %>
-          <%= render 'item', product: item[:product], quantity: item[:quantity].to_i %>
+          <%= render 'item', product: item[:product], quantity: item[:quantity].to_i, discount: item[:sales_discount] %>
         <% end %>
       </tbody>
       <tfoot>
         <tr>
-          <th colspan="4">
+          <th colspan="5">
             TOTAL:
           </th>
           <th>
-            <%= humanized_money_with_symbol cart_subtotal_cents / 100.0 %>
+            <%= humanized_money_with_symbol (get_discount_price?(cart_subtotal_cents / 100.0)) %>
           </th>
         </tr>
       </tfoot>
@@ -37,7 +40,7 @@
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-amount="<%= cart_subtotal_cents %>"
+          data-amount="<%= get_discount_price?(cart_subtotal_cents) %>"
           data-name="Jungle"
           data-description="Khurram Virani's Jungle Order"
           data-locale="auto"

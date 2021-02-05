@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
   helper_method :cart
 
   def enhanced_cart
-    @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product:product, quantity: cart[product.id.to_s] } }
+    @enhanced_cart ||= Product.where(id: cart.keys).map {|product| { product:product, quantity: cart[product.id.to_s], sales_discount: get_discount_percentage? } }
   end
   helper_method :enhanced_cart
 
@@ -42,4 +42,20 @@ class ApplicationController < ActionController::Base
   end
   helper_method :find_sale
 
+
+  def get_discount_percentage?
+    @sales_discount = Sale.active.first[:percent_off].to_f / 100
+  end
+  helper_method :get_discount_percentage?
+
+  def get_discount_price?(price)
+    if Sale.active.first
+    discount_percentage = Sale.active.first[:percent_off].to_f / 100
+    discount_value = price * discount_percentage
+    return @discount_price = price - discount_value
+    else
+      return price
+    end
+  end
+  helper_method :get_discount_price?
 end

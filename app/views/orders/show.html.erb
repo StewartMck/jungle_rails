@@ -14,7 +14,10 @@
         <tr>
           <th colspan="2">Product</th>
           <th>Quantity</th>
-          <th colspan="2">Price</th>
+          <th>Price</th>
+          <% if active_sale? %>
+          <th>Discount</th>
+          <%end%>
         </tr>
       </thead>
       <tbody>

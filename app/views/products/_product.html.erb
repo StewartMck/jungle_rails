@@ -18,8 +18,8 @@
       Details &raquo;
     <% end %>
   </footer>
-  <aside class="price">
-    <%= humanized_money_with_symbol product.price %>
+  <aside class= "<%= active_sale? ? 'price price--discount' : 'price'%>">
+    <%= humanized_money_with_symbol (get_discount_price? product.price) %>
   </aside>
 
 <% if product.quantity.zero? %>

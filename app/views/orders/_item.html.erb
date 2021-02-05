@@ -11,6 +11,9 @@
     <%= quantity %>
   </td>
   <td>
-    $<%= product.price * quantity %>
+    <%= humanized_money_with_symbol product.price * quantity %>
+  </td>
+  <td>
+  <%= humanized_money_with_symbol (product.price * quantity) * get_discount_percentage? %>
   </td>
 </tr>
