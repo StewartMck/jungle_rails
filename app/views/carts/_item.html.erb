@@ -18,7 +18,9 @@
   <td>
     $<%= product.price * quantity %>
   </td>
+  <% if active_sale? %>
   <td>
-    $<%= (product.price * quantity) * discount %>
+    <%= humanized_money_with_symbol (product.price * quantity) * discount %>
   </td>
+   <%end%>
 </tr>

@@ -44,12 +44,16 @@ class ApplicationController < ActionController::Base
 
 
   def get_discount_percentage?
-    @sales_discount = Sale.active.first[:percent_off].to_f / 100
+    if find_sale
+    return @sales_discount = Sale.active.first[:percent_off].to_f / 100
+    else
+      return 1
+    end
   end
   helper_method :get_discount_percentage?
 
   def get_discount_price?(price)
-    if Sale.active.first
+    if find_sale
     discount_percentage = Sale.active.first[:percent_off].to_f / 100
     discount_value = price * discount_percentage
     return @discount_price = price - discount_value
