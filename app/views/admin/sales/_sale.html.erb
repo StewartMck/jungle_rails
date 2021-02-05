@@ -9,11 +9,15 @@
     <%=sale.ends_on%>
   </td>
   <td>
-    STATUS
+      <% if sale.finished? %>
+      <span class="label label-danger">Finished</span>
+      <% elsif sale.upcomming?%>
+      <span class="label label-warning">Upcomming</span>
+      <% else %>
+      <span class="label label-success">Active</span>
+      <% end %>
   </td>
   <td>
     <%=sale.percent_off%>
-  </td>
-  <td>
   </td>
 </tr>
