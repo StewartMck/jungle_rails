@@ -1,15 +1,22 @@
 <div class="signup-form">
-      <%= form_for :user, url: '/users' do |f| %>
+
+      <%= form_for @user do |f| %>
+
+      <% if flash.any? %>
+            <% flash.each do |type, msg| %>
+             <div class="alert alert-warning">
+               <%= msg %>
+             </div>
+            <% end %>
+      <% end %>
+
        <h2>Register</h2>
 	    	<p class="hint-text">Create your account. It's free and only takes a minute.</p>
 
           <div class="form-group">
-          <%= f.text_field :first_name, class: 'form-control', id:"firstName", placeholder:"First Name", required:"required" %>
+          <%= f.text_field :name, class: 'form-control', id:"name", placeholder:"Full Name", required:"required" %>
           </div>
-           <div class="form-group">
-          <%= f.text_field :last_name, class:'form-control', id:"lastName", placeholder:"Last Name", required:"required" %>
-          </div>
-  
+
           <div class="form-group">
           <%= f.text_field :email, class:'form-control', id:"email", placeholder:"Email Address", required:"required" %>
           </div>  
@@ -22,7 +29,7 @@
           </div>
 
           <div class="form-group">
-          <%= f.submit "Submit",  class: "btn btn-success btn-lg btn-block"%>
+          <%= f.submit "Submit",  class: "login-btn btn-success btn-lg btn-block"%>
           </div> 
 
       <% end %>
