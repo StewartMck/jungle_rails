@@ -1,0 +1,13 @@
+<tr>
+  <td>
+   <%= link_to order do %>
+    <%=order.id%>
+    <% end %>
+  </td>
+  <td>
+    <%= humanized_money_with_symbol order.total_cents / 100 %>
+  </td>
+  <td>
+    <%=order.email%>
+  </td>
+</tr>
