@@ -1,36 +1,57 @@
-.modal-dialog .modal-login {
-	margin-top: 80px;
-}
-.modal-login {		
+
+.dialog-login {
 	color: #636363;
 	width: 350px;
+	margin: auto;
+	font-size: 15px;
+	border-radius: 3px;
+	box-shadow: 0 3px 9px rgba(0, 0, 0, 0.500);
+	padding: 30px;
+	margin-top: 60px;
 }
-.modal-login .modal-content {
-	padding: 20px;
+
+.dialog-login-content {
 	border-radius: 5px;
 	border: none;
 }
-.modal-login .modal-header {
+.dialog-login-header {
 	border-bottom: none;   
 	position: relative;
 	justify-content: center;
 }
-.modal-login h4 {
+.dialog-login-title {
 	text-align: center;
-	margin: 10px 0 -15px;
+	color: #636363;
+	margin: 0 0 15px;
+	position: relative;
 }
 
-.modal-login .form-control, .modal-login .btn {
+.dialog-login-title:before, .dialog-login-title:after {
+	content: "";
+	height: 2px;
+	width: 30%;
+	background: #d4d4d4;
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}	
+.dialog-login-title:before {
+	left: 0;
+}
+.dialog-login-title:after {
+	right: 0;
+}
+
+.dialog-login .form-control, .dialog-login  .btn {
 	min-height: 40px;
 	border-radius: 3px; 
 }
-.modal-login .close {
-	position: absolute;
-	top: -5px;
-	right: -5px;
-}	
 
-.modal-login .btn, .modal-login .btn:active {
+.dialog-login .form-group {
+	margin-bottom: 20px;
+}
+
+.dialog-login  .btn{
 	color: #fff;
 	border-radius: 4px;
 	background: #60c7c1 !important;
@@ -39,7 +60,7 @@
 	line-height: normal;
 	border: none;
 }
-.modal-login .btn:hover, .modal-login .btn:focus {
+.dialog-login .btn:focus, .dialog-login .btn:hover {
 	background: #45aba6 !important;
 	outline: none;
 }

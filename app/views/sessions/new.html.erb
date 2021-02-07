@@ -1,10 +1,9 @@
-	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-			<div class="modal-header">			
-				<h4 class="modal-title">Login</h4>	
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<div class="dialog-login">
+		<div class="dialog-login-content">
+			<div class="dialog-login-header">			
+				<h4 class="dialog-login-title">Login</h4>	
 		  </div>
-			<div class="modal-body">
+			<div class="dialog-login-body">
       <%= form_for :sessions do |f| %>
       <div class="form-group">
       <%= f.text_field :email, class: "form-control", placeholder: "Email Address", required:"required"  %>
