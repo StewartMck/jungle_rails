@@ -1,6 +1,13 @@
 	<div class="dialog-login">
 		<div class="dialog-login-content">
 			<div class="dialog-login-header">			
+        <% if flash.any? %>
+            <% flash.each do |type, msg| %>
+             <div class="alert alert-warning">
+               <%= msg %>
+             </div>
+            <% end %>
+      <% end %>
 				<h4 class="dialog-login-title">Login</h4>	
 		  </div>
 			<div class="dialog-login-body">

@@ -1,45 +1,60 @@
-<%raise @items.inspect%>
-
 <section class="orders-show">
+<%#raise @items.inspect%>
 
   <header class="page-header">
-    <h1>Order #<%= @order.id %></h1>
+    <h1>Admin &raquo; All Orders &raquo; Order #<%=@items[0]['order_id']%></h1>
   </header>
-  <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
-    <h5>A Confirmation Email will be sent to: <strong><%=@order.email%></strong></h5>
-  </div>
-
+ <h4><%=@order.email%></h4>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th colspan="2">Product</th>
+          <th>Product ID</th>
+          <th>Product Name</th>
           <th>Quantity</th>
-          <th>Price</th>
-          <% if active_sale? %>
+          <th>Item Price</th>
           <th>Discount</th>
-          <%end%>
+          <th>Total Paid</th>
         </tr>
       </thead>
       <tbody>
-        <% @order.line_items.each do |item| %>
-          <%= render 'item', product: item.product, quantity: item[:quantity].to_i %>
-        <% end %>
+      <%@items.each do |item|%>
+      <tr>
+      <%#raise @items.inspect%>
+        <td>
+          <%=item.product_id%>
+        </td>
+         <td>
+          <%=item.name%>
+        </td>
+        <td>
+          <%=item.quantity%>
+        </td>
+        <td>
+          <%=humanized_money_with_symbol item.item_price_cents / 100%>
+        </td>
+         <td>
+          <%=humanized_money_with_symbol discount?((item.item_price_cents * item.quantity), item.total_price_cents) / 100%>
+        </td>
+        <td>
+          <%=humanized_money_with_symbol item.total_price_cents / 100%>
+        </td>
+        </tr>
+        <%end%>
       </tbody>
       <tfoot>
-        <tr>
-          <th colspan= <%= active_sale? ? "4" : "3" %>>
+        <th colspan="4">
             TOTAL:
           </th>
           <th>
-            <%= humanized_money_with_symbol @order.total_cents / 100.0 %>
+          <%= humanized_money_with_symbol discount?(@items.map {|item| item.item_price_cents * item.quantity }, @order.total_cents) / 100%>
+          </th>
+          <th>
+          <%= humanized_money_with_symbol @order.total_cents / 100%>
           </th>
         </tr>
       </tfoot>
     </table>
   </div>
-
-  <%= link_to "Continue Shopping", root_path, class: 'btn btn-lg btn-primary' %>
 
 </section>
