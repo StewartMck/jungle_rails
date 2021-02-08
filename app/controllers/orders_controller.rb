@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      get_discount_price?(cart_subtotal_cents).to_i,
-      description: "Khurram Virani's Jungle Order",
+      description: current_user ? "#{current_user.name}'s Jungle Order" : "Guest's Jungle Order",
       currency:    'cad'
     )
   end
