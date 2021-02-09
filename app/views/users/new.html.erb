@@ -2,10 +2,10 @@
 
       <%= form_for @user do |f| %>
 
-      <% if flash.any? %>
-            <% flash.each do |type, msg| %>
+      <% if @user.errors.any? %>
+            <% @user.errors.full_messages.each do |msg| %>
              <div class="alert alert-warning">
-               <%= msg %>
+               <%=msg %>
              </div>
             <% end %>
       <% end %>
