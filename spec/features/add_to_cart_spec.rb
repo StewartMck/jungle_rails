@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-RSpec.feature "ProductDetails", type: :feature, js: true do
+RSpec.feature "AddToCarts", type: :feature, js: true do
  
   before :each do
     @category = Category.create! name: 'Apparel'
-    #@category.products.create! (key:values) --> category has many products
-
+    
     10.times do |n|
       @category.products.create!(
         name:  Faker::Hipster.sentence(3),
@@ -17,16 +16,16 @@ RSpec.feature "ProductDetails", type: :feature, js: true do
     end
   end
 
-  scenario "See a product detail page" do
+  scenario "Add to cart" do
     # ACT
     visit root_path
-    first('article.product').find_link("Details").click()
+    expect(page).to have_content("My Cart (0)")
+    first('article.product').find_button("Add").click()
     sleep 0.3
     
     # DEBUG / VERIFY
     save_screenshot
-    expect(page).to have_content('Name')
-    expect(page).to have_content('Description')
+    expect(page).to have_content("My Cart (1)")
   end
 
 end
