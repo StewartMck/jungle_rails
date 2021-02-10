@@ -6,13 +6,13 @@ RSpec.describe UserMailer, type: :mailer do
     @category = Category.new({ name: 'Test Category' })
     @category.save!
 
-    @product1 = Product.create(
+    @product1 = Product.create!(
       name: 'Test Product 1',
       price_cents: 100,
       quantity: 1,
       category_id: @category.id
     )
-    @product2 = Product.create(
+    @product2 = Product.create!(
       name: 'Test Product 2',
       price_cents: 100,
       quantity: 1,
@@ -29,13 +29,13 @@ RSpec.describe UserMailer, type: :mailer do
                         item_price: 100,
                         total_price: 100
                       })
-@order.line_items.new({
+  @order.line_items.new({
                         product: @product2,
                         quantity: 1,
                         item_price: 200,
                         total_price: 200
                       })
-
+  @order.save!
   end
 
   describe "Order Receipt" do
@@ -48,7 +48,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match(@order.email)
+      expect(mail.body.encoded).to match("Thank you for your support!")
     end
   end
 end

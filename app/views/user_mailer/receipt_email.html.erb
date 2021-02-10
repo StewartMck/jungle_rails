@@ -27,16 +27,8 @@
         </tr>
         <%end%>
       </tbody>
-      <tfoot>
-        <th colspan="3">
-            TOTAL:
-          </th>
-          <th>
-          <%= humanized_money_with_symbol @order.total_cents / 100%>
-          </th>
-        </tr>
-      </tfoot>
     </table>
-  </div>
-
+    <hr>
+            TOTAL:
+          <%= humanized_money_with_symbol @order.total_cents / 100%>
 </section>
