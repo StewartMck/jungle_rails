@@ -17,13 +17,15 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Category</th>
+          <th style="width: 95%">Category</th>
         </tr>
       </thead>
        <tbody>
         <% @categories.each do |item| %>
         <tr>
          <td><%=item[:name]%></td>
+          <td> <%= link_to fa_icon('trash'), [:admin, item], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+          </td>
          </tr>
         <% end %>
       </tbody>
