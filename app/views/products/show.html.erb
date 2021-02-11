@@ -5,9 +5,7 @@
   </header>
 
   <article class="product-detail">
-
     <div class="row">
-
       <div class="col-sm-4">
         <%= image_tag @product.image.url, class: 'main-img' %>
       </div>
@@ -43,33 +41,34 @@
   <%= form.submit 'Save Review', class: 'btn btn-info'%>
    </div>
    </div>
-  <%end%>
-  <%end%>
   <hr>
+  <%end%>
+  <%end%>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">Review</th>
-      <th scope="col">Date</th>
-      <th scope="col">Rating</th>
-      <th></th>
+      <th class="col-sm-10">Review</th>
+      <th class="col-sm-1">Date</th>
+      <th class="col-sm-1">Rating</th>
+      <%if current_user%>
+      <th class="col-sm-1"></th>
+      <%end%>
     </tr>
   </thead>
   <tbody>
   <%@product.reviews.each do |item|%>
   <tr>
       <td><%=item.description%></td>
-      <td><%=item.created_at%></td>
+      <td><%=item.created_at.strftime("%m/%d/%y")%></td>
       <td><%=item.rating%></td>
+      <%if current_user.id == item.user_id%>
       <td>
       <%= link_to fa_icon('trash'), [@product, item], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %></td>
   </tr>
       <%end%>
+      <%end%>
   </tbody>
 </table>
-
- </div>
-
-  
+ </div> 
 </section>
