@@ -62,7 +62,7 @@
       <td><%=item.description%></td>
       <td><%=item.created_at.strftime("%m/%d/%y")%></td>
       <td><%=item.rating%></td>
-      <%if current_user.id == item.user_id%>
+      <%if current_user && current_user.id == item.user_id%>
       <td>
       <%= link_to fa_icon('trash'), [@product, item], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %></td>
   </tr>

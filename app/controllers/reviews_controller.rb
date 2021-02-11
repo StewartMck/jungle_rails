@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   before_action :require_login
 
   def create
@@ -10,12 +9,11 @@ class ReviewsController < ApplicationController
     redirect_to :back
   end
 
-
   def destroy
     @review = Review.find params[:id]
     @review.destroy
     redirect_to :back, notice:
-    "Category deleted"
+    'Review Deleted'
   end
 
   private
@@ -23,15 +21,14 @@ class ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(
       :description,
-      :rating,
+      :rating
     )
   end
 
   def require_login
     unless current_user
-      flash[:error] = "You must be logged in to access this section"
+      flash[:error] = 'You must be logged in to access this section'
       redirect_to login_path
     end
   end
-
 end
