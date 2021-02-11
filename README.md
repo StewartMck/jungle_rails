@@ -73,7 +73,7 @@ Admin Username & Password: Jungle / book
 ## Dependencies & Dev Dependencies
 
 - Ruby 2.3.5
-- * Rails 4.2 
+- Rails 4.2 
 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
 - PostgreSQL 9.x
 - Stripe
