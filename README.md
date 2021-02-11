@@ -1,11 +1,11 @@
-!["Jungle Logo"](docs/jungle_logo.PNG)
+!["Jungle Logo"](./docs/jungle_logo.PNG)
 
 ### Jungle is a Ruby on Rails E-commerce application which allows users to purchase goods and make payments through use of the Stripe API.
 
 <br>
 <br>
 
-!["Jungle gif"](docs/scheduler.gif)
+!["Jungle gif"](./docs/scheduler.gif)
 
 ## Skills on Display
 
